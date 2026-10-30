@@ -1,0 +1,1 @@
+"""Synthetic, fictional demonstration data."""

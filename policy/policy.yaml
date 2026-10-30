@@ -1,0 +1,45 @@
+version: "2026-01"
+identities:
+  doctor_001:
+    roles: [treating_doctor]
+    operations: [READ, SAVE, DELIVER]
+    resources: [LAB-0001, REPORT-0001, "REPORT-*", PUBLIC-0001, INTERNAL-0001]
+    purposes: [treatment, care_summary, patient_communication, public_information]
+  billing_001:
+    roles: [billing]
+    operations: [READ, SAVE, DELIVER]
+    resources: [BILL-0001, PUBLIC-0001, INTERNAL-0001]
+    purposes: [billing, public_information]
+  privacy_001:
+    roles: [privacy_officer]
+    operations: [READ, SAVE, DELIVER]
+    resources: ["*"]
+    purposes: [privacy_review, treatment, billing, public_information, care_summary, patient_communication]
+  attacker_001:
+    roles: [unauthorized]
+    operations: []
+    resources: []
+    purposes: []
+agents:
+  agent_001:
+    operations: [READ, SAVE, DELIVER]
+    resources: ["*"]
+recipients:
+  doctor_inbox:
+    clearance: PATIENT_RESTRICTED
+    purposes: [treatment, care_summary, patient_communication]
+    resources: [LAB-0001, REPORT-0001, "REPORT-*"]
+  billing_inbox:
+    clearance: CONFIDENTIAL
+    purposes: [billing]
+    resources: [BILL-0001, "REPORT-*"]
+  external_email:
+    clearance: PUBLIC
+    purposes: [public_information]
+    resources: [PUBLIC-0001, LAB-0001, "REPORT-*"]
+declassification_roles: [privacy_officer]
+declassification_targets:
+  PATIENT_RESTRICTED: [CONFIDENTIAL, INTERNAL, PUBLIC]
+  CONFIDENTIAL: [INTERNAL, PUBLIC]
+  INTERNAL: [PUBLIC]
+  PUBLIC: []

@@ -1,0 +1,31 @@
+scenarios:
+  - id: legitimate_doctor_read
+    expected: ALLOW
+    actor_id: doctor_001
+    agent_id: agent_001
+    action: READ
+    resource_id: LAB-0001
+    purpose: treatment
+  - id: unauthorized_user_read
+    expected: DENY
+    actor_id: attacker_001
+    agent_id: agent_001
+    action: READ
+    resource_id: LAB-0001
+    purpose: treatment
+  - id: prompt_injected_delivery
+    expected: DENY
+    actor_id: doctor_001
+    agent_id: agent_001
+    action: DELIVER
+    resource_id: LAB-0001
+    recipient_id: external_email
+    purpose: public_information
+  - id: unknown_recipient
+    expected: DENY
+    actor_id: doctor_001
+    agent_id: agent_001
+    action: DELIVER
+    resource_id: REPORT-0001
+    recipient_id: unknown_party
+    purpose: patient_communication

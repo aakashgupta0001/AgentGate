@@ -1,0 +1,15 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.hypothesis/
+.coverage
+htmlcov/
+coverage.xml
+storage/*.db
+storage/*.sqlite
+storage/*.sqlite3
+storage/*.log
+data/generated/

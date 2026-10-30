@@ -1,0 +1,8 @@
+pydantic==2.12.5
+PyYAML==6.0.3
+streamlit==1.48.1
+Faker==37.6.0
+python-dotenv==1.1.1
+pytest==8.4.1
+pytest-cov==6.2.1
+hypothesis==6.138.3
